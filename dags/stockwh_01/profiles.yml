@@ -1,0 +1,15 @@
+stockwh_01:
+  outputs:
+    dev:
+      dbname: stockwh
+      host: 172.22.0.2
+      pass: dev
+      port: 5432
+      schema: wh
+      threads: 1
+      type: postgres
+      user: postgres
+      pass: postgres
+  target: dev
+
+  

@@ -1,0 +1,13 @@
+version: 1
+
+sources:
+  - name: raw
+    database: stockwh
+    schema: raw
+    tables:
+      - name: price
+      - name: balance
+      - name: income
+      - name: cash
+      - name: news
+      - name: profile
