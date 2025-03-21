@@ -27,5 +27,6 @@
 - **Python 3.12**: Để chạy các script crawl và load.
 - **dbt 1.6.0**: Để transform dữ liệu (tương thích với `cosmos`).
 - **PostgreSQL**: Database `stockwh` để lưu trữ dữ liệu.
+- **Astro CLI**: Để chạy project
 
 ---
