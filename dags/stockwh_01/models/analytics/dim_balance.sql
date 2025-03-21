@@ -1,1 +1,2 @@
-SELECT * FROM {{ source('raw', 'balance') }}
+SELECT * 
+FROM {{ ref("stg_dim_balance") }}

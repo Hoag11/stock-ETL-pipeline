@@ -1,3 +1,3 @@
 SELECT 
     *
-FROM {{ source('raw', 'cash') }}
+FROM {{ ref("stg_dim_cash") }}
