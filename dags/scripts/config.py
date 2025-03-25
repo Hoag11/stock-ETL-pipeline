@@ -1,4 +1,7 @@
-max_workers = 5
+import random
+
+max_workers = 1
+rate_limit = random.randint(15, 50)
 
 all_symbols = [
     "HPG",  # Thép Hòa Phát
@@ -9,16 +12,6 @@ all_symbols = [
     "CTG",  # VietinBank
     "MWG",  # Bán lẻ Thế Giới Di Động
     "VHM",  # Bất động sản Vinhomes
-    "GAS",  # Khí Việt Nam
     "MSN",  # Masan Group
-    "VIC",  # Tập đoàn Vingroup
     "TCB",  # Ngân hàng Techcombank
-    "MBB",  # Ngân hàng MB
-    "SSI",  # Chứng khoán SSI
-    "VIB",  # Ngân hàng Quốc tế
-    "STB",  # Sacombank
-    "VRE",  # Vincom Retail
-    "PNJ",  # Vàng bạc Phú Nhuận
-    "DGC",  # Hóa chất Đức Giang
-    "REE"   # Điện - Nước - BĐS REE
 ]

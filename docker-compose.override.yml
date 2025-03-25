@@ -11,7 +11,6 @@ services:
       - postgres
     networks:
       - stock_network
-
   postgres:
     container_name: stock_b7156c-postgres-1
     networks:

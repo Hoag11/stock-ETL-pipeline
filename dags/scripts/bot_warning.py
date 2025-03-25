@@ -11,7 +11,7 @@ noti = Messenger(
 )
 
 # Khởi tạo đối tượng Vnstock với nguồn TCBS
-stock = Vnstock().stock(symbol='VCI', source='VCI')
+stock = Vnstock().stock(symbol='TCBS', source='TCBS')
 
 # Định nghĩa ngày bắt đầu và kết thúc
 start_date = '2025-03-01'  # Có thể thay đổi ngày bắt đầu
