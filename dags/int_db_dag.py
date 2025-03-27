@@ -50,7 +50,7 @@ with DAG(
     default_args=default_args,
     description='DAG to initialize the stockwh database, schemas, and tables',
     schedule_interval="@once",  # Chỉ chạy một lần khi Airflow khởi động
-    start_date=datetime(2023, 1, 1),
+    start_date=datetime(2025, 1, 1),
     catchup=False,
 ) as dag:
 
@@ -63,16 +63,16 @@ with DAG(
     # Task 2: Tạo schema raw và các bảng trong raw
     create_raw_schema_task = PostgresOperator(
         task_id='create_raw_schema',
-        postgres_conn_id='postgres_default',
-        sql='/opt/airflow/dags/scripts/sql/create_raw_schema.sql',
+        postgres_conn_id='postgres_stock_db',
+        sql='/usr/local/airflow/dags/scripts/sql/create_raw_schema.sql',
         database='stockwh',
     )
 
     # Task 3: Tạo schema wh và các bảng trong wh
     create_wh_schema_task = PostgresOperator(
         task_id='create_wh_schema',
-        postgres_conn_id='postgres_default',
-        sql='/opt/airflow/dags/scripts/sql/create_wh_schema.sql',
+        postgres_conn_id='postgres_stock_db',
+        sql='/usr/local/airflow/dags/scripts/sql/create_wh_schema.sql',
         database='stockwh',
     )
 

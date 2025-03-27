@@ -7,3 +7,4 @@ requests
 bs4
 sqlalchemy
 psycopg2-binary
+ipython
