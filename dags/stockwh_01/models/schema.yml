@@ -1,0 +1,14 @@
+
+version: 2
+
+sources:
+  - name: raw
+    database: your_database
+    schema: public
+    tables:
+      - name: profile
+      - name: price
+      - name: news
+      - name: income
+      - name: balance
+      - name: cash

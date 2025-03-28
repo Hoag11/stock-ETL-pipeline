@@ -1,0 +1,22 @@
+SELECT
+    period,
+    quarter,
+    year,
+    revenue,
+    year_revenue_growth,
+    quarter_revenue_growth,
+    cost_of_good_sold,
+    gross_profit,
+    operation_expense,
+    operation_profit,
+    year_operation_profit_growth,
+    quarter_operation_profit_growth,
+    interest_expense,
+    pre_tax_profit,
+    post_tax_profit,
+    share_holder_income,
+    year_share_holder_income_growth,
+    quarter_share_holder_income_growth,
+    ebitda,
+    symbol
+FROM {{ source('raw', 'income') }}

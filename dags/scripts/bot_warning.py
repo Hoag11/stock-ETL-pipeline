@@ -11,7 +11,6 @@ def run():
         token_key='8031535646:AAGFjLf_qGi8kuvutg1xY4b9nxdx42qjMQc'
     )
 
-    stock = Vnstock().stock(symbol='TCBS', source='TCBS')
     start_date = '2025-03-01'
     end_date = datetime.now().strftime('%Y-%m-%d')
     symbols = ["HPG", "FPT", "VNM"]
@@ -32,12 +31,12 @@ def run():
         latest_volume = latest_data["volume"]
 
         message = (
-            f"**{symbol} ({latest_data['time']})**"
-            f"- Giá mở cửa: {latest_data['open']}"
-            f"- Giá cao nhất: {latest_data['high']}"
-            f"- Giá thấp nhất: {latest_data['low']}"
-            f"- Giá đóng cửa: {latest_data['close']}"
-            f"- Khối lượng: {latest_volume} (TB 5 ngày: {avg_volume_5:.0f})"
+            f"**{symbol} ({latest_data['time']})**\n"
+            f"- Giá mở cửa: {latest_data['open']}\n"
+            f"- Giá cao nhất: {latest_data['high']}\n"
+            f"- Giá thấp nhất: {latest_data['low']}\n"
+            f"- Giá đóng cửa: {latest_data['close']}\n"
+            f"- Khối lượng: {latest_volume} (TB 5 ngày: {avg_volume_5:.0f})\n"
             f"- Biến động giá: {price_change:.2f}%"
         )
 
@@ -50,6 +49,7 @@ def run():
 
     for symbol in symbols:
         try:
+            stock = Vnstock().stock(symbol=symbol, source='TCBS')  
             df_price = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
             df_price.to_csv(f'{file_path}/{symbol}_price_history.csv', index=False)
             print(f"Đã lưu dữ liệu cho {symbol}")

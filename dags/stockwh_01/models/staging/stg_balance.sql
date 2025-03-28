@@ -1,0 +1,23 @@
+SELECT
+    period,
+    quarter,
+    year,
+    short_asset,
+    cash,
+    short_invest,
+    short_receivable,
+    inventory,
+    long_asset,
+    fixed_asset,
+    asset,
+    debt,
+    short_debt,
+    long_debt,
+    equity,
+    capital,
+    other_debt,
+    un_distributed_income,
+    minor_share_holder_profit,
+    payable,
+    symbol
+FROM {{ source('raw', 'balance') }}
