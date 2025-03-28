@@ -1,10 +1,9 @@
-
 version: 2
 
 sources:
   - name: raw
-    database: your_database
-    schema: public
+    database: stockwh
+    schema: raw
     tables:
       - name: profile
       - name: price
