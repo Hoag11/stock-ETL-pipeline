@@ -11,37 +11,43 @@ def run():
         token_key='8031535646:AAGFjLf_qGi8kuvutg1xY4b9nxdx42qjMQc'
     )
 
-    # Khởi tạo đối tượng Vnstock với nguồn TCBS
     stock = Vnstock().stock(symbol='TCBS', source='TCBS')
-
-    # Ngày bắt đầu và kết thúc
     start_date = '2025-03-01'
     end_date = datetime.now().strftime('%Y-%m-%d')
-
-    # Danh sách mã
     symbols = ["HPG", "FPT", "VNM"]
 
-    # Tạo thư mục
     file_path = 'otp/airflow/data/price'
     os.makedirs(file_path, exist_ok=True)
 
-    # Hàm định dạng thông báo
     def format_price_message(symbol, df_price):
         if df_price.empty or df_price is None:
             return f"Không có dữ liệu cho {symbol}"
 
+        df_price["price_change_pct"] = df_price["close"].pct_change() * 100
+        df_price["volume_ma5"] = df_price["volume"].rolling(window=5).mean()
+
         latest_data = df_price.iloc[-1]
+        price_change = df_price["price_change_pct"].iloc[-1]
+        avg_volume_5 = df_price["volume_ma5"].iloc[-1]
+        latest_volume = latest_data["volume"]
+
         message = (
-            f"**Dữ liệu giá cổ phiếu {symbol} ({latest_data['time']})**\n"
-            f"- Giá mở cửa: {latest_data['open']}\n"
-            f"- Giá cao nhất: {latest_data['high']}\n"
-            f"- Giá thấp nhất: {latest_data['low']}\n"
-            f"- Giá đóng cửa: {latest_data['close']}\n"
-            f"- Khối lượng: {latest_data['volume']}"
+            f"**{symbol} ({latest_data['time']})**"
+            f"- Giá mở cửa: {latest_data['open']}"
+            f"- Giá cao nhất: {latest_data['high']}"
+            f"- Giá thấp nhất: {latest_data['low']}"
+            f"- Giá đóng cửa: {latest_data['close']}"
+            f"- Khối lượng: {latest_volume} (TB 5 ngày: {avg_volume_5:.0f})"
+            f"- Biến động giá: {price_change:.2f}%"
         )
+
+        if abs(price_change) > 5:
+            message += "\n⚠️ Biến động giá mạnh!"
+        if latest_volume > 2 * avg_volume_5:
+            message += "\n🚨 Volume đột biến!"
+
         return message
 
-    # Thu thập và gửi dữ liệu
     for symbol in symbols:
         try:
             df_price = stock.quote.history(symbol=symbol, start=start_date, end=end_date)
