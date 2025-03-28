@@ -3,7 +3,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import scripts.config as config
 import time
 
-def run():
+def crawl_news():
 
     file_path = '/usr/local/airflow/data/raw_data/company_news'
     stock_id = config.all_symbols
@@ -28,4 +28,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    crawl_news()

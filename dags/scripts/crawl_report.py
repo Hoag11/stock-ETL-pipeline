@@ -3,7 +3,7 @@ import scripts.config as config
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
-def run():
+def crawl_report():
 
 
     file_path = '/usr/local/airflow/data/raw_data/company_report'
@@ -33,4 +33,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    crawl_report()

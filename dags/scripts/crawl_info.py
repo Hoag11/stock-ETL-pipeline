@@ -4,7 +4,7 @@ import scripts.config as config
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
-def run():
+def crawl_info():
 
     def process_symbol(symbol, base_path, rate_limit):
         company = Vnstock().stock(symbol=symbol, source='TCBS').company
@@ -29,4 +29,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    crawl_info()

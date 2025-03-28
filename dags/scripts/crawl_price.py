@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import scripts.config as config
 import time
 
-def run():
+def crawl_price():
 
     file_path = '/usr/local/airflow/data/raw_data/price'
     start_date = '2015-01-01'
@@ -31,4 +31,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    crawl_price()
