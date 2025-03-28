@@ -1,4 +1,5 @@
 import random
+from vnstock import Vnstock 
 
 max_workers = 1
 rate_limit = random.randint(15, 50)

@@ -1,4 +1,4 @@
-from vnstock3 import Vnstock 
+from vnstock import Vnstock 
 from vnstock3.botbuilder.noti import Messenger
 from datetime import datetime
 import os

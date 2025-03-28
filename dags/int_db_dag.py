@@ -64,7 +64,7 @@ with DAG(
     create_raw_schema_task = PostgresOperator(
         task_id='create_raw_schema',
         postgres_conn_id='postgres_stock_db',
-        sql='/usr/local/airflow/dags/scripts/sql/create_raw_schema.sql',
+        sql='/scripts/sql/create_raw_schema.sql',
         database='stockwh',
     )
 
@@ -72,7 +72,7 @@ with DAG(
     create_wh_schema_task = PostgresOperator(
         task_id='create_wh_schema',
         postgres_conn_id='postgres_stock_db',
-        sql='/usr/local/airflow/dags/scripts/sql/create_wh_schema.sql',
+        sql='/scripts/sql/create_wh_schema.sql',
         database='stockwh',
     )
 

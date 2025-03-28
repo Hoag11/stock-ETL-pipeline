@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS raw.balance (
     minor_share_holder_profit numeric,
     payable numeric,
     symbol character varying
-)
+);
 
 CREATE TABLE IF NOT EXISTS raw.cash (
     period character varying,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS raw.cash (
     from_sale numeric,
     free_cash_flow numeric,
     symbol character varying
-)
+);
 
 CREATE TABLE IF NOT EXISTS raw.income (
     period character varying,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS raw.income (
     quarter_share_holder_income_growth numeric,
     ebitda numeric,
     symbol character varying
-)
+);
 
 CREATE TABLE IF NOT EXISTS raw.news (
     rsi numeric,
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS raw.news (
     source character varying,
     publish_date date,
     symbol character varying
-)
+);
 
 CREATE TABLE IF NOT EXISTS raw.price (
     time date,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS raw.price (
     close numeric,
     volume numeric,
     symbol character varying
-)
+);
 
 CREATE TABLE IF NOT EXISTS raw.profile (
     company_name character varying,
@@ -92,4 +92,4 @@ CREATE TABLE IF NOT EXISTS raw.profile (
     key_developments text,
     business_strategies text,
     symbol character varying
-)
+);

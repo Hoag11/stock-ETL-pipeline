@@ -1,11 +1,11 @@
 import pandas as pd
-from vnstock3 import Vnstock
+from vnstock import Vnstock
 import scripts.config as config
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
 def process_symbol(symbol, base_path, rate_limit):
-    company = Vnstock().stock(symbol=symbol, source='TCBS').company
+    company = Vnstock().stock(symbol=symbol, source='VCI').company
     df = company.profile()
     df.to_csv(f'{base_path}/{symbol}_profile.csv', index=False)
     print(f"Đã lưu thông tin công ty {symbol}.")
