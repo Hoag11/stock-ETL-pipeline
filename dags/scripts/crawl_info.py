@@ -4,16 +4,14 @@ import scripts.config as config
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import time
 
-def crawl_info():
-
-    def process_symbol(symbol, base_path, rate_limit):
+def process_symbol(symbol, base_path, rate_limit):
         company = Vnstock().stock(symbol=symbol, source='TCBS').company
         df = company.profile()
         df.to_csv(f'{base_path}/{symbol}_profile.csv', index=False)
         print(f"Đã lưu thông tin công ty {symbol}.")
         time.sleep(rate_limit)
 
-    def run():
+def run():
         rate_limit = config.rate_limit
         symbols = config.all_symbols
         base_path = '/usr/local/airflow/data/raw_data/company_info'
@@ -24,9 +22,6 @@ def crawl_info():
             for future in as_completed(futures):
                 future.result()
 
-    if __name__ == "__main__":
+if __name__ == "__main__":
         run()
 
-
-if __name__ == '__main__':
-    crawl_info()

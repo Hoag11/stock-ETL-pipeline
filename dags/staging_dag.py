@@ -25,22 +25,22 @@ with DAG(
 
     crawl_info_task = PythonOperator(
         task_id='crawl_info',
-        python_callable=scripts.crawl_info.crawl_info
+        python_callable=scripts.crawl_info.run
     )
 
     crawl_news_task = PythonOperator(
         task_id='crawl_news',
-        python_callable=scripts.crawl_news.crawl_news
+        python_callable=scripts.crawl_news.run
     )
 
     crawl_price_task = PythonOperator(
         task_id='crawl_price',
-        python_callable=scripts.crawl_price.crawl_price
+        python_callable=scripts.crawl_price.run
     )
 
     crawl_report_task = PythonOperator(
         task_id='crawl_report',
-        python_callable=scripts.crawl_report.crawl_report
+        python_callable=scripts.crawl_report.run
     )
 
     load_task = PythonOperator(
