@@ -2,31 +2,31 @@
 
 # StockWH Project
 
-## Mô tả dự án
+## Project Description
 
-**StockWH** là một dự án xây dựng data warehouse để thu thập, xử lý và phân tích dữ liệu chứng khoán từ các công ty niêm yết tại Việt Nam (như HPG, FPT, LPB). Dự án sử dụng **Airflow** để quản lý pipeline ETL (Extract, Transform, Load) và **dbt** để transform dữ liệu thành các bảng dimension và fact, phục vụ cho việc phân tích tài chính và giá cổ phiếu.
+**StockWH** is a data warehouse project aimed at collecting, processing, and analyzing stock data from listed companies in Vietnam (e.g., HPG, FPT, LPB). The project uses Airflow to manage the ETL (Extract, Transform, Load) pipeline and dbt to transform raw data into dimension and fact tables, enabling comprehensive financial and stock price analyses.
 
-### Mục tiêu
-- Thu thập dữ liệu thô từ các nguồn như giá cổ phiếu, tin tức, báo cáo tài chính (income, balance, cash flow).
-- Lưu trữ dữ liệu thô trong schema `raw` của database `stockwh`.
-- Transform dữ liệu thành các bảng dimension (`dim_company`, `dim_date`) và fact (`fact_symbol`) trong schema `wh` của database `stockwh`.
-- Cung cấp dữ liệu đã xử lý để phân tích, ví dụ: doanh thu, lợi nhuận, tác động của tin tức lên giá cổ phiếu.
+### Objectives
+- Collect raw data from various sources such as stock prices, news articles, financial statements (income, balance, cash flow).
+- Store raw data in the raw schema of the stockwh database.
+- Transform raw data into dimension tables (`dim_company`) and fact table (`fact_price`) within the wh schema of the stockwh database.
+- Provide processed data for financial analyses, such as revenue, profit, and the impact of news on stock prices.
 
-### Công nghệ sử dụng
-- **Airflow**: Quản lý pipeline ETL.
-- **dbt**: Transform dữ liệu.
-- **PostgreSQL**: Lưu trữ dữ liệu (database `stockwh`).
-- **Python**: Viết script crawl và load dữ liệu (sử dụng thư viện `vnstock3`).
-- **Docker**: Chạy Airflow và PostgreSQL trong container.
+### Technologies
+- **Airflow**: Manage ETL pipelines.
+- **dbt**: Data transformation.
+- **PostgreSQL**: Data storage (`stockwh` database).
+- **Python**: Scripting for crawling and loading data (using the `vnstock3` library).
+- **Docker**: Running Airflow and PostgreSQL in containers.
 
 ---
 
-## Yêu cầu hệ thống
+## System Requirements
 
-- **Docker** và **Docker Compose**: Để chạy Airflow và PostgreSQL.
-- **Python 3.12**: Để chạy các script crawl và load.
-- **dbt 1.6.0**: Để transform dữ liệu (tương thích với `cosmos`).
-- **PostgreSQL**: Database `stockwh` để lưu trữ dữ liệu.
-- **Astro CLI**: Để chạy project
+- **Docker** và **Docker Compose**: To run Airflow and PostgreSQL.
+- **Python 3.10**: For running data crawling and loading scripts.
+- **dbt 1.6.0**: Data transformation (compatible with `Cosmos`).
+- **PostgreSQL**: The `stockwh` database for data storage.
+- **Astro CLI**: For running the project.
 
 ---
