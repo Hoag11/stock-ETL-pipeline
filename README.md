@@ -6,7 +6,7 @@
 
 **StockWH** is a data warehouse project aimed at collecting, processing, and analyzing stock data from listed companies in Vietnam (e.g., HPG, FPT, LPB). The project uses Airflow to manage the ETL (Extract, Transform, Load) pipeline and dbt to transform raw data into dimension and fact tables, enabling comprehensive financial and stock price analyses.
 
-Link to Telegram alarm price (VNM, FPT, HPG): https://t.me/+_EnUuDnldM00ZGU9
+Link to **Telegram** alarm price (VNM, FPT, HPG): https://t.me/+_EnUuDnldM00ZGU9
 
 ### Objectives
 - Collect raw data from various sources such as stock prices, news articles, financial statements (income, balance, cash flow).
