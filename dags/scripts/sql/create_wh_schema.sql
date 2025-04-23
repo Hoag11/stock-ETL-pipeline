@@ -2,7 +2,7 @@ CREATE SCHEMA IF NOT EXISTS wh;
 
 CREATE TABLE IF NOT EXISTS wh.dim_image (
     image VARCHAR(255),
-    symbol VARCHAR(10),
+    symbol VARCHAR(10)
 );
 
 INSERT INTO wh.dim_image (image, symbol)
