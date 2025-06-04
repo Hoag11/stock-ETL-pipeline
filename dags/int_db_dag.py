@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 import psycopg2
 from psycopg2 import sql
 
+
 # Hàm kiểm tra và tạo database nếu chưa tồn tại
 def create_database():
     try:
@@ -14,7 +15,7 @@ def create_database():
             port=5432,
             user="postgres",
             password="postgres",
-            database="postgres" 
+            database="postgres",
         )
         conn.autocommit = True  # Để tạo database, cần bật autocommit
         cursor = conn.cursor()
@@ -35,46 +36,47 @@ def create_database():
         print(f"Error creating database: {e}")
         raise
 
+
 # Định nghĩa DAG
 default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    "owner": "airflow",
+    "depends_on_past": False,
+    "email_on_failure": False,
+    "email_on_retry": False,
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
 }
 
 with DAG(
-    'init_db_dag',
+    "init_db_dag",
     default_args=default_args,
-    description='DAG to initialize the stockwh database, schemas, and tables',
+    description="DAG to initialize the stockwh database, schemas, and tables",
     schedule_interval="@once",  # Chỉ chạy một lần khi Airflow khởi động
     start_date=datetime(2025, 1, 1),
     catchup=False,
 ) as dag:
-
     # Task 1: Tạo database stockwh
     create_db_task = PythonOperator(
-        task_id='create_database',
+        task_id="create_database",
         python_callable=create_database,
     )
 
     # Task 2: Tạo schema raw và các bảng trong raw
     create_raw_schema_task = PostgresOperator(
-        task_id='create_raw_schema',
-        postgres_conn_id='postgres_stock_db',
-        sql='/scripts/sql/create_raw_schema.sql',
-        database='stockwh',
+        task_id="create_raw_schema",
+        postgres_conn_id="postgres_stock_db",
+        sql="/scripts/sql/create_raw_schema.sql",
+        database="stockwh",
     )
 
     # Task 3: Tạo schema wh và các bảng trong wh
     create_wh_schema_task = PostgresOperator(
-        task_id='create_wh_schema',
-        postgres_conn_id='postgres_stock_db',
-        sql='/scripts/sql/create_wh_schema.sql',
-        database='stockwh',
+        task_id="create_wh_schema",
+        postgres_conn_id="postgres_stock_db",
+        sql="/scripts/sql/create_wh_schema.sql",
+        database="stockwh",
     )
 
     # Định nghĩa thứ tự chạy
     create_db_task >> create_raw_schema_task >> create_wh_schema_task
+
