@@ -6,8 +6,8 @@ import requests
 
 def send_message_via_telegram(message):
     proxy = {
-        "http": "http://proxymart50143:TxBvAFCW@103.90.231.247:50143", 
-        "https": "http://proxymart50143:TxBvAFCW@103.90.231.247:50143"
+        "http": "http://[username]:[passwrd]@103.90.231.247:50143", 
+        "https": "http://[username]:[passwrd]@103.90.231.247:50143"
     }
 
     url = f"https://api.telegram.org/bot8031535646:AAGFjLf_qGi8kuvutg1xY4b9nxdx42qjMQc/sendMessage"
