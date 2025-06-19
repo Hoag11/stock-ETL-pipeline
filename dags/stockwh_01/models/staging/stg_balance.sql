@@ -12,7 +12,7 @@ SELECT
     asset * 1000000000 AS asset,
     debt * 1000000000 AS debt,
     short_debt * 1000000000 AS short_debt,
-    long_debt * 1000000000 AS,
+    long_debt * 1000000000 AS long_debt,
     equity * 1000000000 AS equity,
     capital * 1000000000 AS capital,
     other_debt * 1000000000 AS other_debt,
