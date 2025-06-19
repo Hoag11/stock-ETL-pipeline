@@ -6,7 +6,7 @@ import scripts.crawl_info
 import scripts.crawl_news
 import scripts.crawl_price
 import scripts.crawl_report
-#import scripts.bot_warning
+import scripts.bot_warning
 import scripts.init_db
 import scripts.load_to_db
 
@@ -54,10 +54,10 @@ with DAG(
         wait_for_completion=True,  # Chờ DAG dbt hoàn thành trước khi tiếp tục
     )
 
-    # bot_warning_task = PythonOperator(
-    #     task_id='bot_warning',
-    #     python_callable=scripts.bot_warning.run
-    # )
+    bot_warning_task = PythonOperator(
+        task_id='bot_warning',
+        python_callable=scripts.bot_warning.run
+    )
 
     # Thứ tự thực thi
-    init_db >> [crawl_info_task, crawl_news_task, crawl_price_task, crawl_report_task] >> load_task >> trigger_dbt_dag 
+    init_db >> [crawl_info_task, crawl_news_task, crawl_price_task, crawl_report_task] >> load_task >> trigger_dbt_dag >> bot_warning_task

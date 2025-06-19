@@ -2,15 +2,28 @@ from vnstock import Vnstock
 from vnstock3.botbuilder.noti import Messenger
 from datetime import datetime
 import os
+import requests
+
+def send_message_via_telegram(message):
+    proxy = {
+        "http": "http://proxymart50143:TxBvAFCW@103.90.231.247:50143", 
+        "https": "http://proxymart50143:TxBvAFCW@103.90.231.247:50143"
+    }
+
+    url = f"https://api.telegram.org/bot8031535646:AAGFjLf_qGi8kuvutg1xY4b9nxdx42qjMQc/sendMessage"
+    data = {
+        "chat_id": "-4644357398",
+        "text": message
+    }
+
+    try:
+        response = requests.post(url, data=data, proxies=proxy)
+        response.raise_for_status()  # Raise an exception for HTTP errors
+        print(f"Đã gửi thông báo: {message}")
+    except requests.exceptions.RequestException as e:
+        print(f"Lỗi khi gửi thông báo: {e}")
 
 def run():
-    # Khởi tạo Telegram Messenger
-    noti = Messenger(
-        platform='telegram',
-        channel='-4644357398',
-        token_key='8031535646:AAGFjLf_qGi8kuvutg1xY4b9nxdx42qjMQc'
-    )
-
     start_date = '2025-03-01'
     end_date = datetime.now().strftime('%Y-%m-%d')
     symbols = ["HPG", "FPT", "VNM"]
@@ -55,12 +68,12 @@ def run():
             print(f"Đã lưu dữ liệu cho {symbol}")
 
             message = format_price_message(symbol, df_price)
-            noti.send_message(message=message)
+            send_message_via_telegram(message)  # Sử dụng hàm gửi tin nhắn với proxy
             print(f"Đã gửi thông báo cho {symbol}")
 
         except Exception as e:
             error_message = f"Lỗi khi xử lý {symbol}: {str(e)}"
-            noti.send_message(message=error_message)
+            send_message_via_telegram(error_message)  # Sử dụng hàm gửi thông báo lỗi
             print(error_message)
 
 if __name__ == '__main__':
